@@ -38,8 +38,44 @@ export PATH
 # The orginal version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.3/bin:${PATH}"
 export PATH
+
+#   -----------------------------
+#   2.  MAKE TERMINAL BETTER
+#   -----------------------------
+
 function myst()
 {
 	open -a Sublime\ Text\ 2 $1
 }
 alias SublimeText=myst
+alias f='open -a Finder ./' #Open Finder in HOME
+alias myip='curl ip.appspot.com' # myip: Public facing IP Address
+alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock: Display open sockets
+alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'   # lsockU: Display only open UDP sockets
+alias lsockT='sudo /usr/sbin/lsof -nP | grep TCP'   # lsockT: Display only open TCP sockets
+alias qfind="find . -name " # qfind: Quickly search for file
+
+#   extract:  Extract most know archives with one command
+#   ---------------------------------------------------------
+    extract () {
+        if [ -f $1 ] ; then
+          case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar e $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)     echo "'$1' cannot be extracted via extract()" ;;
+             esac
+         else
+             echo "'$1' is not a valid file"
+         fi
+    }
+
+
