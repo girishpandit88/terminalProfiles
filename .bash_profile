@@ -120,4 +120,9 @@ function awsGetIP()
   aws ec2 describe-instances --instance-ids $1|jq '.Reservations[].Instances[].NetworkInterfaces[].Association.PublicIp'
 }
 alias awsGetIP=awsGetIP
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home
+function awsProdGetIP()
+{
+  aws ec2 describe-instances --instance-ids $1 --profile tnt-prod|jq '.Reservations[].Instances[].NetworkInterfaces[].Association.PublicIp'
+}
+alias awsProdGetIP=awsProdGetIP
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
