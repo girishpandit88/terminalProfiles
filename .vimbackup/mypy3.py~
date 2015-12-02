@@ -1,0 +1,19 @@
+import sys
+def cat(filename):
+  f=open(filename,'rU')
+  wordCount = {}
+  for line in f:
+   wordlist = line.split()
+   for word in wordlist:
+     if word.lower()!="":
+       wordCount[word.lower()]=wordCount.get(word.lower(),0)+1
+     else:
+       break
+  for k in sorted(wordCount.keys()): print k, "==>",wordCount[k]
+  f.close
+
+def main():
+  cat(sys.argv[1])
+
+if __name__=='__main__':
+  main()
